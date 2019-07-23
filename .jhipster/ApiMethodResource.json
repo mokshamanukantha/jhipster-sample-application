@@ -1,0 +1,52 @@
+{
+    "name": "ApiMethodResource",
+    "fields": [
+        {
+            "fieldName": "restrictedInputPaths",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "restrictedOutputPaths",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mask",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "enable",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "apiPermission",
+            "otherEntityRelationshipName": "apiMethodResource",
+            "relationshipName": "method",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipName": "apiResource",
+            "otherEntityName": "apiResource",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190723021536",
+    "entityTableName": "api_method_resource",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

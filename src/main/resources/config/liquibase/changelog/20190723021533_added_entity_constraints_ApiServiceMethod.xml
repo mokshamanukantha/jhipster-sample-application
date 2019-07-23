@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ApiServiceMethod.
+    -->
+    <changeSet id="20190723021533-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="api_service_id"
+                                 baseTableName="api_service_method"
+                                 constraintName="fk_api_service_method_api_service_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="api_service"/>
+
+        <addForeignKeyConstraint baseColumnNames="api_service_method_id"
+                                 baseTableName="api_service_method_object"
+                                 constraintName="fk_api_service_method_object_api_service_method_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="api_service_method"/>
+
+        <addForeignKeyConstraint baseColumnNames="object_id"
+                                 baseTableName="api_service_method_object"
+                                 constraintName="fk_api_service_method_object_object_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="api_method_resource"/>
+        
+        <addForeignKeyConstraint baseColumnNames="api_service_method_id"
+                                 baseTableName="api_service_method_method"
+                                 constraintName="fk_api_service_method_method_api_service_method_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="api_service_method"/>
+
+        <addForeignKeyConstraint baseColumnNames="method_id"
+                                 baseTableName="api_service_method_method"
+                                 constraintName="fk_api_service_method_method_method_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="api_permission"/>
+        
+    </changeSet>
+</databaseChangeLog>

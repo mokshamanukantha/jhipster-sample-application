@@ -1,0 +1,59 @@
+<div>
+    <h2 id="page-heading">
+        <span>Api Resources</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-api-resource" [routerLink]="['/api-resource/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Api Resource
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="apiResources?.length === 0">
+        <span>No apiResources found</span>
+    </div>
+    <div class="table-responsive" *ngIf="apiResources?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let apiResource of apiResources ;trackBy: trackId">
+                <td><a [routerLink]="['/api-resource', apiResource.id, 'view' ]">{{apiResource.id}}</a></td>
+                <td>{{apiResource.name}}</td>
+                <td>{{apiResource.description}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/api-resource', apiResource.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/api-resource', apiResource.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'api-resource', { outlets: { popup: apiResource.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

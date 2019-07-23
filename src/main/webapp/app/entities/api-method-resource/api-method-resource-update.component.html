@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-api-method-resource-heading">Create or edit a Api Method Resource</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_restrictedInputPaths">Restricted Input Paths</label>
+                    <input type="text" class="form-control" name="restrictedInputPaths" id="field_restrictedInputPaths"
+                           formControlName="restrictedInputPaths"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_restrictedOutputPaths">Restricted Output Paths</label>
+                    <input type="text" class="form-control" name="restrictedOutputPaths" id="field_restrictedOutputPaths"
+                           formControlName="restrictedOutputPaths"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_mask">Mask</label>
+                    <input type="text" class="form-control" name="mask" id="field_mask"
+                           formControlName="mask"/>
+                    <div *ngIf="editForm.get('mask').invalid && (editForm.get('mask').dirty || editForm.get('mask').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mask').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_enable">Enable</label>
+                    <input type="checkbox" class="form-control" name="enable" id="field_enable"
+                           formControlName="enable"/>
+                    <div *ngIf="editForm.get('enable').invalid && (editForm.get('enable').dirty || editForm.get('enable').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('enable').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_methods">Method</label>
+                    <select class="form-control" id="field_methods" multiple name="methods" formControlName="methods">
+                        <option [ngValue]="getSelected(editForm.get('methods').value, apiPermissionOption)" *ngFor="let apiPermissionOption of apipermissions; trackBy: trackApiPermissionById">{{apiPermissionOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_apiResource">Api Resource</label>
+                    <select class="form-control" id="field_apiResource" name="apiResource" formControlName="apiResource">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="apiResourceOption.id === editForm.get('apiResource').value?.id ? editForm.get('apiResource').value : apiResourceOption" *ngFor="let apiResourceOption of apiresources; trackBy: trackApiResourceById">{{apiResourceOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

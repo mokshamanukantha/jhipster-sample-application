@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="apiLogin">
+            <h2><span>Api Login</span> {{apiLogin.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{apiLogin.name}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{apiLogin.description}}</span>
+                </dd>
+                <dt><span>Api Client</span></dt>
+                <dd>
+                    <div *ngIf="apiLogin.apiClient">
+                        <a [routerLink]="['/api-client', apiLogin.apiClient?.id, 'view']">{{apiLogin.apiClient?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Type</span></dt>
+                <dd>
+                    <div *ngIf="apiLogin.type">
+                        <a [routerLink]="['/api-credential', apiLogin.type?.id, 'view']">{{apiLogin.type?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/api-login', apiLogin.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

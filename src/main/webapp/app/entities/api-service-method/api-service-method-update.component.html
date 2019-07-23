@@ -1,0 +1,110 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-api-service-method-heading">Create or edit a Api Service Method</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_type">Type</label>
+                    <select class="form-control" name="type" formControlName="type" id="field_type">
+                        <option value="URL">URL</option>
+                        <option value="COMPONENT">COMPONENT</option>
+                        <option value="OBJECT">OBJECT</option>
+                    </select>
+                    <div *ngIf="editForm.get('type').invalid && (editForm.get('type').dirty || editForm.get('type').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('type').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_version">Version</label>
+                    <input type="text" class="form-control" name="version" id="field_version"
+                           formControlName="version"/>
+                    <div *ngIf="editForm.get('version').invalid && (editForm.get('version').dirty || editForm.get('version').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('version').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_path">Path</label>
+                    <input type="text" class="form-control" name="path" id="field_path"
+                           formControlName="path"/>
+                    <div *ngIf="editForm.get('path').invalid && (editForm.get('path').dirty || editForm.get('path').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('path').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_method">Method</label>
+                    <select class="form-control" name="method" formControlName="method" id="field_method">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                        <option value="PATCH">PATCH</option>
+                        <option value="COPY">COPY</option>
+                        <option value="HEAD">HEAD</option>
+                        <option value="OPTIONS">OPTIONS</option>
+                        <option value="LINK">LINK</option>
+                        <option value="UNLINK">UNLINK</option>
+                        <option value="PURGE">PURGE</option>
+                        <option value="LOCK">LOCK</option>
+                        <option value="UNLOCK">UNLOCK</option>
+                        <option value="PROPFIND">PROPFIND</option>
+                        <option value="VIEW">VIEW</option>
+                    </select>
+                    <div *ngIf="editForm.get('method').invalid && (editForm.get('method').dirty || editForm.get('method').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('method').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_apiService">Api Service</label>
+                    <select class="form-control" id="field_apiService" name="apiService" formControlName="apiService">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="apiServiceOption.id === editForm.get('apiService').value?.id ? editForm.get('apiService').value : apiServiceOption" *ngFor="let apiServiceOption of apiservices; trackBy: trackApiServiceById">{{apiServiceOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_objects">Object</label>
+                    <select class="form-control" id="field_objects" multiple name="objects" formControlName="objects">
+                        <option [ngValue]="getSelected(editForm.get('objects').value, apiMethodResourceOption)" *ngFor="let apiMethodResourceOption of apimethodresources; trackBy: trackApiMethodResourceById">{{apiMethodResourceOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_methods">Method</label>
+                    <select class="form-control" id="field_methods" multiple name="methods" formControlName="methods">
+                        <option [ngValue]="getSelected(editForm.get('methods').value, apiPermissionOption)" *ngFor="let apiPermissionOption of apipermissions; trackBy: trackApiPermissionById">{{apiPermissionOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
