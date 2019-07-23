@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ApiMethodResource.
+    -->
+    <changeSet id="20190723021536-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="api_method_resource_id"
+                                 baseTableName="api_method_resource_method"
+                                 constraintName="fk_api_method_resource_method_api_method_resource_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="api_method_resource"/>
+
+        <addForeignKeyConstraint baseColumnNames="method_id"
+                                 baseTableName="api_method_resource_method"
+                                 constraintName="fk_api_method_resource_method_method_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="api_permission"/>
+        
+        <addForeignKeyConstraint baseColumnNames="api_resource_id"
+                                 baseTableName="api_method_resource"
+                                 constraintName="fk_api_method_resource_api_resource_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="api_resource"/>
+
+    </changeSet>
+</databaseChangeLog>

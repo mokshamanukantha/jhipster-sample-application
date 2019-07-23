@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span>Api Logins</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-api-login" [routerLink]="['/api-login/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Api Login
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="apiLogins?.length === 0">
+        <span>No apiLogins found</span>
+    </div>
+    <div class="table-responsive" *ngIf="apiLogins?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Api Client</span></th>
+            <th><span>Type</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let apiLogin of apiLogins ;trackBy: trackId">
+                <td><a [routerLink]="['/api-login', apiLogin.id, 'view' ]">{{apiLogin.id}}</a></td>
+                <td>{{apiLogin.name}}</td>
+                <td>{{apiLogin.description}}</td>
+                <td>
+                    <div *ngIf="apiLogin.apiClient">
+                        <a [routerLink]="['../api-client', apiLogin.apiClient?.id, 'view' ]" >{{apiLogin.apiClient?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="apiLogin.type">
+                        <a [routerLink]="['../api-credential', apiLogin.type?.id, 'view' ]" >{{apiLogin.type?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/api-login', apiLogin.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/api-login', apiLogin.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'api-login', { outlets: { popup: apiLogin.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -14,6 +14,21 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021527_added_entity_ApiCredential.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021528_added_entity_ApiService.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021529_added_entity_ApiClient.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021530_added_entity_ApiSession.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021531_added_entity_ApiConfiguration.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021532_added_entity_ApiLogin.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021533_added_entity_ApiServiceMethod.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021534_added_entity_ApiPermission.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021535_added_entity_ApiGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021536_added_entity_ApiMethodResource.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021537_added_entity_ApiResource.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20190723021532_added_entity_constraints_ApiLogin.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021533_added_entity_constraints_ApiServiceMethod.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021535_added_entity_constraints_ApiGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190723021536_added_entity_constraints_ApiMethodResource.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

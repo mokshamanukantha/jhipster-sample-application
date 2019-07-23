@@ -1,0 +1,46 @@
+{
+    "name": "ApiService",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "authenticationState",
+            "fieldType": "AuthState",
+            "fieldValues": "ENABLED,DISABLED"
+        },
+        {
+            "fieldName": "authorizationState",
+            "fieldType": "AuthState",
+            "fieldValues": "ENABLED,DISABLED"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "apiServiceMethod",
+            "otherEntityRelationshipName": "apiService",
+            "relationshipName": "module"
+        }
+    ],
+    "changelogDate": "20190723021528",
+    "entityTableName": "api_service",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

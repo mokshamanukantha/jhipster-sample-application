@@ -1,0 +1,72 @@
+{
+    "name": "ApiServiceMethod",
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "MethodType",
+            "fieldValues": "URL,COMPONENT,OBJECT",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "version",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "path",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "method",
+            "fieldType": "HttpMethod",
+            "fieldValues": "GET,POST,PUT,DELETE,PATCH,COPY,HEAD,OPTIONS,LINK,UNLINK,PURGE,LOCK,UNLOCK,PROPFIND,VIEW",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "apiService",
+            "otherEntityName": "apiService",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "apiMethodResource",
+            "otherEntityRelationshipName": "apiServiceMethod",
+            "relationshipName": "object",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "apiPermission",
+            "otherEntityRelationshipName": "apiServiceMethod",
+            "relationshipName": "method",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190723021533",
+    "entityTableName": "api_service_method",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

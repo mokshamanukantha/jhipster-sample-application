@@ -1,0 +1,33 @@
+{
+    "name": "ApiResource",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "apiMethodResource",
+            "otherEntityRelationshipName": "apiResource",
+            "relationshipName": "resource"
+        }
+    ],
+    "changelogDate": "20190723021537",
+    "entityTableName": "api_resource",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

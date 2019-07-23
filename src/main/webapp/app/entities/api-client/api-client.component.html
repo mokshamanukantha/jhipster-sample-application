@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span>Api Clients</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-api-client" [routerLink]="['/api-client/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Api Client
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="apiClients?.length === 0">
+        <span>No apiClients found</span>
+    </div>
+    <div class="table-responsive" *ngIf="apiClients?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Client Id</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Cookie Enable</span></th>
+            <th><span>Cookie TTL</span></th>
+            <th><span>Client Callback</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let apiClient of apiClients ;trackBy: trackId">
+                <td><a [routerLink]="['/api-client', apiClient.id, 'view' ]">{{apiClient.id}}</a></td>
+                <td>{{apiClient.clientId}}</td>
+                <td>{{apiClient.name}}</td>
+                <td>{{apiClient.description}}</td>
+                <td>{{apiClient.cookieEnable}}</td>
+                <td>{{apiClient.cookieTTL}}</td>
+                <td>{{apiClient.clientCallback}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/api-client', apiClient.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/api-client', apiClient.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'api-client', { outlets: { popup: apiClient.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

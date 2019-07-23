@@ -1,0 +1,23 @@
+{
+    "name": "ApiSession",
+    "fields": [
+        {
+            "fieldName": "sessionId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "token",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190723021530",
+    "entityTableName": "api_session",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

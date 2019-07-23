@@ -1,0 +1,128 @@
+enum MethodType
+{
+	URL, COMPONENT, OBJECT
+}
+
+enum AuthState
+{
+	ENABLED, DISABLED
+}
+
+enum HttpMethod
+{
+	GET, POST, PUT, DELETE, PATCH, COPY, HEAD, OPTIONS, LINK, 
+    UNLINK, PURGE, LOCK, UNLOCK, PROPFIND, VIEW
+}
+
+entity ApiCredential
+{
+	name String required,
+	description String required,
+	idpName String required,
+    idpDscription String required,
+    entityId String required,
+    clientId String required,
+    clientSecret String required,
+    issuer String required,
+    scope String required,
+    callbackUrl String required,
+    certCacheTTL Long required,
+    tokenTTTL Long required,
+    idpUrl String required,
+    idpValidateUrl String required,
+    idpUserInfoUrl String required,
+    idpLogoutUrl String required
+}
+
+entity ApiService
+{
+	name String required,
+    description String required,
+    authenticationState AuthState,
+    authorizationState AuthState
+}
+
+entity ApiClient
+{
+	clientId String,
+    name String required,
+    description String required,
+    cookieEnable Boolean required,
+    cookieTTL Long required,
+    clientCallback String required
+}
+
+entity ApiSession
+{
+	sessionId String,
+    token String
+}
+
+entity ApiConfiguration
+{
+	code String,
+    description String,
+    value String
+}
+
+entity ApiLogin
+{
+	name String,
+    description String
+}
+
+entity ApiServiceMethod
+{
+	type MethodType required,
+	version String required,
+	path String required,
+	method HttpMethod required,
+	description String 
+}
+
+entity ApiPermission
+{
+	code String required,
+	description String 
+}
+
+entity ApiGroup
+{
+	code String required,
+	description String 
+}
+
+entity ApiMethodResource
+{
+	restrictedInputPaths String ,
+	restrictedOutputPaths String ,
+    mask String required,
+    enable Boolean required
+}
+entity ApiResource
+{
+    name String required,
+	description String
+}
+
+relationship OneToOne 
+{
+    ApiLogin{type} to ApiCredential
+}
+
+relationship OneToMany 
+{
+    ApiService{module} to ApiServiceMethod,
+    ApiClient{credential} to ApiLogin,
+    ApiResource{resource} to ApiMethodResource
+}
+
+relationship ManyToMany 
+{
+	ApiGroup{permission} to ApiPermission,
+    ApiServiceMethod{object} to ApiMethodResource,
+    ApiServiceMethod{method} to ApiPermission,
+    ApiMethodResource{method} to ApiPermission
+}
+
+service all with serviceImpl

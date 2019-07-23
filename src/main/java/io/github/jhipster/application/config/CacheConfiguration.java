@@ -43,6 +43,24 @@ public class CacheConfiguration {
             createCache(cm, io.github.jhipster.application.domain.User.class.getName());
             createCache(cm, io.github.jhipster.application.domain.Authority.class.getName());
             createCache(cm, io.github.jhipster.application.domain.User.class.getName() + ".authorities");
+            createCache(cm, io.github.jhipster.application.domain.ApiCredential.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiService.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiService.class.getName() + ".modules");
+            createCache(cm, io.github.jhipster.application.domain.ApiClient.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiClient.class.getName() + ".credentials");
+            createCache(cm, io.github.jhipster.application.domain.ApiSession.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiConfiguration.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiLogin.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiServiceMethod.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiServiceMethod.class.getName() + ".objects");
+            createCache(cm, io.github.jhipster.application.domain.ApiServiceMethod.class.getName() + ".methods");
+            createCache(cm, io.github.jhipster.application.domain.ApiPermission.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiGroup.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiGroup.class.getName() + ".permissions");
+            createCache(cm, io.github.jhipster.application.domain.ApiMethodResource.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiMethodResource.class.getName() + ".methods");
+            createCache(cm, io.github.jhipster.application.domain.ApiResource.class.getName());
+            createCache(cm, io.github.jhipster.application.domain.ApiResource.class.getName() + ".resources");
             // jhipster-needle-ehcache-add-entry
         };
     }
